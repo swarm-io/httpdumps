@@ -5,10 +5,10 @@ COPY src/go.sum ./
 RUN go mod download
 COPY src ./
 RUN go build -o server .
-RUN adduser -S -D -H -h /app appuser
-USER appuser
 
 FROM scratch AS bin-linux
+RUN adduser -S -D -H -h /app appuser
+USER appuser
 COPY --from=build /app/server /
 EXPOSE 8801
-CMD ["./server"]
+CMD ["/server"]
