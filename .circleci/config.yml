@@ -17,9 +17,9 @@ jobs:
               docker push swarmiolabs/$IMAGE_NAME:$TAG
 workflows:
   build-push:
-    filters:
-      branches:
-        only:
-          - master
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only:
+                - master
