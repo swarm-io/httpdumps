@@ -13,9 +13,9 @@ jobs:
             name: Build and push Docker image
             command: |
               export TAG=`head -n 1 version.txt`
-              docker build -t swarmiolabs/$IMAGE_NAME:$TAG .
+              docker build -t swarmiolabs/$IMAGE_NAME:$TAG -t swarmiolabs/$IMAGE_NAME:latest .
               echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
-              docker push swarmiolabs/$IMAGE_NAME:$TAG
+              docker push swarmiolabs/$IMAGE_NAME
 workflows:
   build-push:
     jobs:
