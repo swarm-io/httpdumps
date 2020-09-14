@@ -5,7 +5,7 @@ COPY src/go.sum ./
 RUN go mod download
 COPY src ./
 RUN go build -o server .
-RUN adduser -u 10001 appuser
+RUN useradd -u 10001 appuser
 
 FROM scratch AS bin-linux
 COPY --from=build /app/server /
